@@ -41,3 +41,10 @@ nav a{ margin-left:16px }
 footer{ border-top:1px solid var(--line); margin-top:24px }
 
 
+/* Charts form layout */
+.form-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; align-items:end }
+.form-grid label{ display:flex; flex-direction:column }
+.form-grid input, .form-grid select{ padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:var(--bg2); color:var(--txt) }
+.form-actions{ display:flex; align-items:center }
+.form-actions .btn{ height:40px }
+
