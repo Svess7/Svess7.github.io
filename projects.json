@@ -5,7 +5,7 @@
     "subtitle": "CRSP universe post-2000. FF3 alpha with 80/20 blend.",
     "area": "Quantitative Asset Management",
     "tags": ["Trading strategy", "Backtesting", "FF3", "Turnover"],
-    "repo_url": "https://github.com/USERNAME/momentum-2nd-order",
+    "repo_url": "https://github.com/Svess7/momentum-2nd-order",
     "report_url": "files/momentum_report.pdf",
     "slides_url": "files/momentum_slides.pdf",
     "metrics": [
@@ -21,7 +21,7 @@
     "subtitle": "US equities. Size and seasonality controls.",
     "area": "Event/Anomaly",
     "tags": ["Event study", "Anomaly", "Backtesting"],
-    "repo_url": "https://github.com/USERNAME/overnight-return",
+    "repo_url": "https://github.com/Svess7/overnight-return",
     "report_url": "files/overnight_report.pdf",
     "slides_url": "files/overnight_slides.pdf",
     "metrics": [
