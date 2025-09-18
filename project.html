@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project • Detail</title>
+<link rel="stylesheet" href="styles.css" />
+<body>
+<header class="container">
+  <div class="brand"><a href="index.html">Your Name</a></div>
+  <nav><a href="index.html">Home</a></nav>
+ </header>
+
+<main class="container" id="app">
+  <p class="muted">PROJECT — <span id="area"></span></p>
+  <h1 id="title"></h1>
+  <p id="subtitle" class="lead"></p>
+
+  <div class="actions">
+    <a id="reportBtn" class="btn"></a>
+    <a id="slidesBtn" class="btn secondary"></a>
+    <a id="codeBtn" class="btn secondary"></a>
+  </div>
+
+  <section id="metrics" class="metrics"></section>
+
+  <section class="panel">
+    <div class="tabs">
+      <button id="tabReport" class="tab active">Report</button>
+      <button id="tabSlides" class="tab">Slides</button>
+    </div>
+    <div id="viewer" class="viewer"></div>
+  </section>
+ </main>
+
+<footer class="container muted">© <span id="y"></span> Your Name</footer>
+
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+const params = new URLSearchParams(location.search);
+const slug = params.get("p");
+
+(async function () {
+  const list = await (await fetch("projects.json")).json();
+  const p = list.find(x => x.slug === slug);
+  if (!p) { document.getElementById("app").innerHTML = "<p>Not found.</p>"; return; }
+
+  set("area", p.area||"");
+  set("title", p.title);
+  set("subtitle", p.subtitle||"");
+
+  link("reportBtn", p.report_url, "Open Report (PDF)");
+  link("slidesBtn", p.slides_url, "Open Slides (PDF)");
+  link("codeBtn", p.repo_url, "Open Code");
+
+  renderMetrics(p.metrics||[]);
+  loadPDF(p.report_url);
+
+  const tabReport = document.getElementById("tabReport");
+  const tabSlides = document.getElementById("tabSlides");
+  tabReport.onclick = () => { activate(tabReport); deactivate(tabSlides); loadPDF(p.report_url); };
+  tabSlides.onclick = () => { activate(tabSlides); deactivate(tabReport); loadPDF(p.slides_url); };
+
+  function set(id, text){ document.getElementById(id).textContent = text; }
+  function link(id, href, label){
+    const el = document.getElementById(id);
+    if (href) { el.href = href; el.textContent = label; el.target = "_blank"; el.rel = "noopener"; }
+    else { el.remove(); }
+  }
+  function renderMetrics(ms){
+    const box = document.getElementById("metrics");
+    box.innerHTML = ms.map(m=>`
+      <div class="metric">
+        <div class="metric-val">${m.value}</div>
+        <div class="metric-label">${m.label}</div>
+        <div class="metric-sub muted">${m.note||""}</div>
+      </div>
+    `).join("");
+  }
+  function loadPDF(url){
+    const v = document.getElementById("viewer");
+    if (!url){ v.innerHTML = "<p class='muted'>No file.</p>"; return; }
+    v.innerHTML = `<iframe src="${url}" title="PDF" loading="lazy"></iframe>`;
+  }
+  function activate(el){ el.classList.add("active"); }
+  function deactivate(el){ el.classList.remove("active"); }
+})();
+</script>
+</body>
+</html>
+
+

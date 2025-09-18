@@ -5,7 +5,8 @@ import yfinance as yf
 
 def compute_indicators(prices: pd.DataFrame) -> pd.DataFrame:
     """Return DataFrame with Close, 20-day SMA, and 14-day RSI."""
-    close = prices["Close"].copy()
+    # Coerce Close to a Series to handle edge cases (e.g., single-row downloads)
+    close = pd.Series(prices["Close"])  # ensures index exists even if scalar
     out = pd.DataFrame({"Close": close})
 
     # 20-day Simple Moving Average

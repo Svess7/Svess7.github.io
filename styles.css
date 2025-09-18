@@ -1,0 +1,43 @@
+:root{ --bg:#0b0f14; --bg2:#11161d; --txt:#e6eef8; --muted:#a5b3c3; --line:#1d2430; --pri:#3ea6ff; }
+@media (prefers-color-scheme: light){
+  :root{ --bg:#fff; --bg2:#f7f9fc; --txt:#0a111b; --muted:#5b6572; --line:#e6eaf0; --pri:#0b76e0; }
+}
+*{ box-sizing:border-box }
+body{ margin:0; color:var(--txt); background:var(--bg); font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif }
+a{ color:var(--pri); text-decoration:none }
+.container{ max-width:1100px; margin:auto; padding:20px }
+header{ display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line) }
+.brand{ font-weight:700; font-size:1.1rem }
+nav a{ margin-left:16px }
+.hero h1{ margin:10px 0 4px }
+.muted{ color:var(--muted) }
+.lead{ font-size:1.05rem }
+
+.search{ width:100%; margin:12px 0 4px; padding:10px 12px; border-radius:10px; border:1px solid var(--line); background:var(--bg2); color:var(--txt) }
+
+.grid{ display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); margin-top:14px }
+.card{ background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; flex-direction:column; justify-content:space-between }
+.card h2{ margin:6px 0 6px; font-size:1.05rem }
+.eyebrow{ text-transform:uppercase; letter-spacing:.04em; font-size:.75rem; color:var(--muted) }
+.tags{ margin:6px 0 10px }
+.pill{ display:inline-block; margin:3px 6px 0 0; padding:4px 8px; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--muted); font-size:.8rem; cursor:pointer }
+.btn{ display:inline-block; padding:10px 12px; border-radius:10px; background:var(--pri); color:#00111f; font-weight:600 }
+.btn.secondary{ background:transparent; color:var(--pri); border:1px solid var(--pri) }
+.card-actions .btn{ margin-right:8px }
+
+.actions .btn{ margin-right:10px }
+.metrics{ display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); margin:18px 0 }
+.metric{ background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:14px }
+.metric-val{ font-size:1.1rem; font-weight:700 }
+.metric-label{ font-size:.85rem }
+.metric-sub{ font-size:.8rem }
+
+.panel{ background:var(--bg2); border:1px solid var(--line); border-radius:14px; margin-top:10px }
+.tabs{ display:flex; border-bottom:1px solid var(--line) }
+.tab{ background:transparent; color:var(--txt); padding:10px 12px; border:0; cursor:pointer }
+.tab.active{ color:#00111f; background:var(--pri) }
+.viewer{ height:70vh }
+.viewer iframe{ width:100%; height:100%; border:0; border-radius:0 0 14px 14px }
+footer{ border-top:1px solid var(--line); margin-top:24px }
+
+
