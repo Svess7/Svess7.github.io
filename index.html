@@ -1,68 +1,27 @@
 <!doctype html>
-<html lang="en">
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Your Name • Projects</title>
-<link rel="stylesheet" href="styles.css" />
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sverre – Portfolio</title>
+</head>
 <body>
-<header class="container">
-  <div class="brand">Svess7</div>
-  <nav><a href="index.html">Home</a> <a href="chart.html">Charts</a> <a href="#">Resume</a> <a href="#">LinkedIn</a></nav>
- </header>
+  <h1>Sverre – Project Portfolio</h1>
 
-<main class="container">
-  <section class="hero">
-    <h1>All Projects</h1>
-    <p class="muted">Browse selected work. Filter by keyword or tag.</p>
-    <input id="q" class="search" placeholder="Search projects or tags…" />
-  </section>
+  <h2>CV</h2>
+  <p>
+    <a href="https://github.com/svess7/CV">
+      View CV repository on GitHub
+    </a>
+  </p>
 
-  <section id="cards" class="grid"></section>
- </main>
-
-<footer class="container muted">© <span id="y"></span> Svess7</footer>
-
-<script>
-const state = { projects: [], q: "" };
-const elCards = document.getElementById("cards");
-const elQ = document.getElementById("q");
-document.getElementById("y").textContent = new Date().getFullYear();
-
-async function init() {
-  const res = await fetch("projects.json");
-  state.projects = await res.json();
-  render();
-}
-function match(p, q) {
-  if (!q) return true;
-  q = q.toLowerCase();
-  return [p.title, p.subtitle, ...(p.tags||[])].join(" ").toLowerCase().includes(q);
-}
-function tagPills(tags){
-  return (tags||[]).map(t=>`<span class="pill" data-tag="${t}">${t}</span>`).join("");
-}
-function render() {
-  const items = state.projects.filter(p=>match(p, state.q));
-  elCards.innerHTML = items.map(p => `
-    <article class="card">
-      <div class="card-head">
-        <div class="eyebrow">${p.area||""}</div>
-        <h2>${p.title}</h2>
-        <p class="muted">${p.subtitle||""}</p>
-      </div>
-      <div class="tags">${tagPills(p.tags)}</div>
-      <div class="card-actions">
-        <a class="btn" href="project.html?p=${encodeURIComponent(p.slug)}">View project</a>
-      </div>
-    </article>
-  `).join("");
-  document.querySelectorAll(".pill").forEach(x=>{
-    x.onclick = () => { elQ.value = x.dataset.tag; state.q = x.dataset.tag; render(); };
-  });
-}
-elQ.addEventListener("input", e => { state.q = e.target.value; render(); });
-init();
-</script>
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <a href="projects/btc-regime.html">
+        Bitcoin Market Regime Detection
+      </a>
+    </li>
+  </ul>
 </body>
 </html>
 
